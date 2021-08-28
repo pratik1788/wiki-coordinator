@@ -1,0 +1,25 @@
+application:
+  server:
+    port: 8081
+  event:
+      topic: evenet-notification
+      group-id: wiki-coordinator-group
+spring:
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+      max-block-ms-config: 0
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+  data:
+    cassandra:
+      keyspace-name: WikiData
+      contact-points: cassandra-46715-0.cloudclusters.net
+      port:  18835
+      username: wikidata-app
+      password: wikidata
+      schema-action: CREATE_IF_NOT_EXISTS
+      local-datacenter: DC1

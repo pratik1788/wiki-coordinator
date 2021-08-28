@@ -1,0 +1,9 @@
+{"namespace": "com.ps.wikicoordinator.pojo",
+ "type": "record",
+ "name": "EventNotification",
+ "fields": [
+     {"name": "fileName", "type": "string"},
+     {"name": "eventName", "type": "string"},
+     {"name": "details", "type": ["null","string"],"default": null}
+ ]
+}
