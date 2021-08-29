@@ -8,11 +8,11 @@ import org.apache.avro.io.DecoderFactory;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 @Service
 public class EventConsumer {
@@ -29,6 +29,7 @@ public class EventConsumer {
                 .fileName(eventNotification.getFileName())
                 .eventName(eventNotification.getEventName())
                 .details(eventNotification.getDetails())
+                .eventTime(LocalTime.ofInstant(eventNotification.getEventTimeStamp(), ZoneId.of("UTC")))
                 .build()).subscribe();
     }
 }

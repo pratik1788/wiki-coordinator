@@ -1,7 +1,6 @@
 package com.ps.wikicoordinator.controller;
 
 
-
 import com.ps.wikicoordinator.entity.WikiEventEntity;
 import com.ps.wikicoordinator.enums.EvenetName;
 import com.ps.wikicoordinator.event.EventProducer;
@@ -14,6 +13,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
+import java.time.Instant;
 
 @RestController("/api/trigger/v1")
 public class ImportEventController {
@@ -27,7 +27,9 @@ public class ImportEventController {
     @RequestMapping(value = "/import-request", method = RequestMethod.POST)
     public String extract(@RequestBody DataImportRequest dataImportRequest) throws IOException {
         producer.sendMessage(EventNotification.newBuilder().setFileName(dataImportRequest.getFilenameToExtract())
-        .setEventName(EvenetName.REQUEST_TO_START_READING_RESOURCE.getName()).build());
+        .setEventName(EvenetName.REQUEST_TO_START_READING_RESOURCE.getName())
+        .setEventTimeStamp(Instant.now())
+        .build());
         return "Request to Load file has been successfully made. Please check import-status to get latest update";
     }
 
