@@ -14,10 +14,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
-import java.util.EventListener;
-import java.util.List;
 
-@RestController("/api/v1")
+@RestController("/api/trigger/v1")
 public class ImportEventController {
 
     @Autowired
