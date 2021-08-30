@@ -1,0 +1,15 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+  data:
+    cassandra:
+      keyspace-name: testwikidata
+      contact-points: cassandra-47676-0.cloudclusters.net
+      port: 19891
+      username: test
+      password: test1234
+      schema-action: RECREATE
+      local-datacenter: DC1
