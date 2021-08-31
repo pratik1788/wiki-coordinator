@@ -2,7 +2,7 @@ application:
   server:
     port: 8081
   event:
-      topic: evenet-notification
+      topic: event-notification
       group-id: wiki-coordinator-group
 spring:
   kafka:
