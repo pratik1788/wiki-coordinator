@@ -15,7 +15,9 @@ import reactor.core.publisher.Mono;
 import java.io.IOException;
 import java.time.Instant;
 
-@RestController("/api/trigger/v1")
+
+@RestController
+@RequestMapping("/api/trigger/v1")
 public class ImportEventController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class ImportEventController {
     private WikiEventRepository wikiEventRepository;
 
     @RequestMapping(value = "/import-request", method = RequestMethod.POST)
-    public String extract(@RequestBody DataImportRequest dataImportRequest) throws IOException {
+    public String triggerImport(@RequestBody DataImportRequest dataImportRequest) throws IOException {
         producer.sendMessage(EventNotification.newBuilder().setFileName(dataImportRequest.getFilenameToExtract())
         .setEventName(EvenetName.REQUEST_TO_START_READING_RESOURCE.getName())
         .setEventTimeStamp(Instant.now())
