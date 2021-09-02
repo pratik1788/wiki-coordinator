@@ -26,6 +26,10 @@ public class DataAnalyzerService {
                 wikiValidDataRepository.getTotalViewCountyByDataMilestoneAndHourAndLanguage(yearMonthDay,hour,language);
     }
 
+    public Flux<WikiValidDataEntity> getTopPagesByYearMonthDatHourUsingQuery(int yearMonthDay,int hour, int topN){
+        return wikiValidDataRepository.getTopNQueryPerLanguageFromDataMilestoneAndHour(yearMonthDay,hour,topN);
+    }
+
     public Flux<WikiValidDataEntity> getTopPagesByYearMonthDatHour(int yearMonthDay,int hour, int topN){
         var wrapperCount = new Object(){ int count = 0; };
         var wrapperLanguage = new Object(){ String language = "-"; };

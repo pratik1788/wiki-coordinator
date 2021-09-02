@@ -35,29 +35,29 @@ public class DataAnalyzerController {
     public Mono<Integer> getPageCountFromDataMilestoneHourLanguage(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable String language) throws IOException {
         return dataAnalyzerService.getPageCount(yearMonthDay,hour,language);
     }
-    @RequestMapping(path={"/getTotalPages/{yearMonthDay}/{hour}"} , method = RequestMethod.GET)
+    /*@RequestMapping(path={"/getTotalPages/{yearMonthDay}/{hour}"} , method = RequestMethod.GET)
     public Mono<Integer> getPageCountFromDataMilestoneHour(@PathVariable int yearMonthDay, @PathVariable int hour ) throws IOException {
         return dataAnalyzerService.getPageCount(yearMonthDay,hour,null);
-    }
+    }*/
 
     @RequestMapping(path = {"/getTotalViews/{yearMonthDay}/{hour}/{language}"}, method = RequestMethod.GET)
     public Mono<Integer> getViewCountFromDataMilestoneHourLanguage(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable String language) throws IOException {
         return dataAnalyzerService.getPageCount(yearMonthDay,hour,language);
     }
 
-    @RequestMapping(path = {"/getTotalViews/{yearMonthDay}/{hour}"}, method = RequestMethod.GET)
+   /* @RequestMapping(path = {"/getTotalViews/{yearMonthDay}/{hour}"}, method = RequestMethod.GET)
     public Mono<Integer> getViewCountFromDataMilestoneHour(@PathVariable int yearMonthDay, @PathVariable int hour ) throws IOException {
         return dataAnalyzerService.getPageCount(yearMonthDay,hour,null);
-    }
+    }*/
 
 
     @RequestMapping(value = "/getTop10PagesByLanguage/{yearMonthDay}/{hour}}", method = RequestMethod.GET)
     public Flux<WikiValidDataEntity> getTop10Pages(@PathVariable int yearMonthDay, @PathVariable int hour) throws IOException {
-        return dataAnalyzerService.getTopPagesByYearMonthDatHour(yearMonthDay,hour,10);
+        return dataAnalyzerService.getTopPagesByYearMonthDatHourUsingQuery(yearMonthDay,hour,10);
     }
 
     @RequestMapping(value = "/getTopNPagesByLanguage/{yearMonthDay}/{hour}/{n}}", method = RequestMethod.GET)
     public Flux<WikiValidDataEntity> getTopNPages(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable int n) throws IOException {
-        return dataAnalyzerService.getTopPagesByYearMonthDatHour(yearMonthDay,hour,n);
+        return dataAnalyzerService.getTopPagesByYearMonthDatHourUsingQuery(yearMonthDay,hour,n);
     }
 }
