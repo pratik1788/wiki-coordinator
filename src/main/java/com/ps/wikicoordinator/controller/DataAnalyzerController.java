@@ -19,8 +19,13 @@ public class DataAnalyzerController {
     @Autowired
     private WikiValidDataRepository wikiValidDataRepository;
 
-    @RequestMapping(value = "/getTop10byLanguage/{yearMonthDay}/{hour}}", method = RequestMethod.GET)
+    @RequestMapping(value = "/getTop10PagesByLanguage/{yearMonthDay}/{hour}}", method = RequestMethod.GET)
     public Flux<WikiValidDataEntity> getEvents(@PathVariable int yearMonthDay, @PathVariable int hour) throws IOException {
         return wikiValidDataRepository.getTopNQueryPerLanguageFromDataMilestoneAndHour(yearMonthDay,hour,10);
+    }
+
+    @RequestMapping(value = "/getTopNPagesByLanguage/{yearMonthDay}/{hour}/{n}}", method = RequestMethod.GET)
+    public Flux<WikiValidDataEntity> getEvents(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable int n) throws IOException {
+        return wikiValidDataRepository.getTopNQueryPerLanguageFromDataMilestoneAndHour(yearMonthDay,hour,n);
     }
 }
