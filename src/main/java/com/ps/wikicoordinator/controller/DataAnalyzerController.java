@@ -31,15 +31,25 @@ public class DataAnalyzerController {
         return wikiValidDataRepository.getTopNQueryPerLanguageFromDataMilestoneAndHour(yearMonthDay,hour,n);
     }
 */
-    @RequestMapping(value = "/getTotalPages/{yearMonthDay}/{hour}/{language}}", method = RequestMethod.GET)
-    public Mono<Integer> getPageCount(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable(required = false) String language) throws IOException {
+    @RequestMapping(path={"/getTotalPages/{yearMonthDay}/{hour}/{language}"} , method = RequestMethod.GET)
+    public Mono<Integer> getPageCountFromDataMilestoneHourLanguage(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable String language) throws IOException {
+        return dataAnalyzerService.getPageCount(yearMonthDay,hour,language);
+    }
+    @RequestMapping(path={"/getTotalPages/{yearMonthDay}/{hour}"} , method = RequestMethod.GET)
+    public Mono<Integer> getPageCountFromDataMilestoneHour(@PathVariable int yearMonthDay, @PathVariable int hour ) throws IOException {
+        return dataAnalyzerService.getPageCount(yearMonthDay,hour,null);
+    }
+
+    @RequestMapping(path = {"/getTotalViews/{yearMonthDay}/{hour}/{language}"}, method = RequestMethod.GET)
+    public Mono<Integer> getViewCountFromDataMilestoneHourLanguage(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable String language) throws IOException {
         return dataAnalyzerService.getPageCount(yearMonthDay,hour,language);
     }
 
-    @RequestMapping(value = "/getTotalViews/{yearMonthDay}/{hour}/{language}}", method = RequestMethod.GET)
-    public Mono<Integer> getViewCount(@PathVariable int yearMonthDay, @PathVariable int hour, @PathVariable(required = false) String language) throws IOException {
-        return dataAnalyzerService.getPageCount(yearMonthDay,hour,language);
+    @RequestMapping(path = {"/getTotalViews/{yearMonthDay}/{hour}"}, method = RequestMethod.GET)
+    public Mono<Integer> getViewCountFromDataMilestoneHour(@PathVariable int yearMonthDay, @PathVariable int hour ) throws IOException {
+        return dataAnalyzerService.getPageCount(yearMonthDay,hour,null);
     }
+
 
     @RequestMapping(value = "/getTop10PagesByLanguage/{yearMonthDay}/{hour}}", method = RequestMethod.GET)
     public Flux<WikiValidDataEntity> getTop10Pages(@PathVariable int yearMonthDay, @PathVariable int hour) throws IOException {

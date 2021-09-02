@@ -11,5 +11,5 @@ spring:
       port: 19891
       username: test
       password: test1234
-      schema-action: RECREATE
+      schema-action: CREATE_IF_NOT_EXISTS
       local-datacenter: DC1

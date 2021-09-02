@@ -25,7 +25,7 @@ public interface WikiValidDataRepository extends ReactiveCassandraRepository<Wik
     @Query("select sum(NON_UNIQUE_VIEWS) from WIKI_VALID_DATA where DATA_MILESTONE =?0 and HOUR = ?1 and LANGUAGE = ?2 ")
     Mono<Integer> getTotalViewCountyByDataMilestoneAndHourAndLanguage(int dataMilestone, int hour, String language );
 
-    @Query("select * from WIKI_VALID_DATA where DATA_MILESTONE =?0 and HOUR = ?1 ALLOW FILTERING")
+    @Query("select * from WIKI_VALID_DATA where DATA_MILESTONE =?0 and HOUR = ?1")
     Flux<WikiValidDataEntity> getWikiDataByDataMilestoneAndHour(int dataMilestone, int hour );
 
 }
