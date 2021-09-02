@@ -50,13 +50,13 @@ class WikiValidDataRepositoryTest extends AbstractWikiCoordinatorApplicationTest
                 .getWikiDataByDataMilestoneAndHour(20120101,0).collectList().block();
         List<WikiValidDataEntity> expectedList=
                 Arrays.asList(
-                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en1").nonUniqueViews(120).recordId(1).build(),
-                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en2").nonUniqueViews(100).recordId(3).build(),
-                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en3").nonUniqueViews(8).recordId(2).build(),
                         WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu1").nonUniqueViews(180).recordId(5).build(),
                         WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu2").nonUniqueViews(70).recordId(6).build(),
-                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu3").nonUniqueViews(3).recordId(4).build()
-                );
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu3").nonUniqueViews(3).recordId(4).build(),
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en1").nonUniqueViews(120).recordId(1).build(),
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en2").nonUniqueViews(100).recordId(3).build(),
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en3").nonUniqueViews(8).recordId(2).build()
+             );
         Assertions.assertEquals(6,resultList.size());
         Assertions.assertEquals(expectedList,resultList);
     }
@@ -89,15 +89,16 @@ class WikiValidDataRepositoryTest extends AbstractWikiCoordinatorApplicationTest
     }
     @Test
     void getTopNQueryPerLanguageFromDataMilestoneAndHour_Top2() {
-
         List<WikiValidDataEntity> resultList= wikiValidDataRepository
                 .getTopNQueryPerLanguageFromDataMilestoneAndHour(20120101,0,2).collectList().block();
         List<WikiValidDataEntity> expectedList=
                 Arrays.asList(
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu1").nonUniqueViews(180).recordId(5).build(),
+                        WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("gu").pageName("gu2").nonUniqueViews(70).recordId(6).build(),
                         WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en1").nonUniqueViews(120).recordId(1).build(),
                         WikiValidDataEntity.builder().dataMilestone(20120101).hour(0).language("en").pageName("en2").nonUniqueViews(100).recordId(3).build()
-                      );
-        Assertions.assertEquals(2,resultList.size());
+                );
+        Assertions.assertEquals(4,resultList.size());
         Assertions.assertEquals(expectedList,resultList);
 
     }
@@ -108,9 +109,10 @@ class WikiValidDataRepositoryTest extends AbstractWikiCoordinatorApplicationTest
                 .getTopNQueryPerLanguageFromDataMilestoneAndHour(20120102,1,1).collectList().block();
         List<WikiValidDataEntity> expectedList=
                 Arrays.asList(
+                        WikiValidDataEntity.builder().dataMilestone(20120102).hour(1).language("zu").pageName("zu1").nonUniqueViews(120).recordId(1).build(),
                         WikiValidDataEntity.builder().dataMilestone(20120102).hour(1).language("ch").pageName("ch1").nonUniqueViews(180).recordId(5).build()
                 );
-        Assertions.assertEquals(1,resultList.size());
+        Assertions.assertEquals(2,resultList.size());
         Assertions.assertEquals(expectedList,resultList);
     }
 

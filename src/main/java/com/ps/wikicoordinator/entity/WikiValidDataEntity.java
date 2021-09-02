@@ -22,7 +22,7 @@ public class WikiValidDataEntity {
             PrimaryKeyType.PARTITIONED)
     private int hour;
     @PrimaryKeyColumn(name = "LANGUAGE", ordinal = 0, type =
-            PrimaryKeyType.CLUSTERED,ordering = Ordering.ASCENDING)
+            PrimaryKeyType.PARTITIONED)
     private String language;
     @PrimaryKeyColumn(name = "NON_UNIQUE_VIEWS", ordinal = 0, type =
             PrimaryKeyType.CLUSTERED, ordering = Ordering.DESCENDING)
